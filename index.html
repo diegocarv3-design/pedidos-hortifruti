@@ -5102,7 +5102,7 @@ V6.7 - CENTRAL DE RECEBIMENTO (COMPRADOR / DEV)
 
 
 
-        return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        return escaparHTML(`${partes[2]}/${partes[1]}/${partes[0]}`);
 
 
 
@@ -6633,7 +6633,7 @@ V6.7 - CENTRAL DE RECEBIMENTO (COMPRADOR / DEV)
 
                 <td class="codigo">
 
-                    ${codigo}
+                    ${escaparHTML(codigo)}
 
                 </td>
 
