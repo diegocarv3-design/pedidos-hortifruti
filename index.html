@@ -7223,7 +7223,7 @@ V6.7 - CENTRAL DE RECEBIMENTO (COMPRADOR / DEV)
 
                 <td class="codigo">
 
-                    ${item.codigo}
+                    ${escaparHTML(item.codigo)}
 
                 </td>
 
@@ -9757,7 +9757,7 @@ async function reabrirPedidoRecebimento(pedidoId,lojaNome){
 function acaoConferenciaCabecalho(ped,grupo,loja){
   if(!ped)return "";
 
-  const nomeLoja=escaparHTML(`${loja.codigo} ${loja.nome}`);
+  const nomeLoja=escaparHTML(JSON.stringify(`${loja.codigo} ${loja.nome}`));
 
   if(grupo?.length>1 && !ped){
     return "";
@@ -9770,14 +9770,14 @@ function acaoConferenciaCabecalho(ped,grupo,loja){
   if(ped.status_operacional==="CONFERIDO"){
     return `<button type="button"
       class="recebimento-reabrir-btn"
-      onclick="event.stopPropagation();reabrirPedidoRecebimento('${ped.id}','${nomeLoja.replaceAll("'","&#39;")}')">
+      onclick="event.stopPropagation();reabrirPedidoRecebimento('${escaparHTML(ped.id)}',${nomeLoja})">
       REABRIR
     </button>`;
   }
 
   return `<button type="button"
     class="recebimento-conferir-btn"
-    onclick="event.stopPropagation();conferirPedidoRecebimento('${ped.id}','${nomeLoja.replaceAll("'","&#39;")}')">
+    onclick="event.stopPropagation();conferirPedidoRecebimento('${escaparHTML(ped.id)}',${nomeLoja})">
     ✓ CONFERIR
   </button>`;
 }
